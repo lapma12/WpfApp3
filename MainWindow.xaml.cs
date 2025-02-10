@@ -47,7 +47,7 @@ namespace WpfApp3 {
             if(Xpozicio < 0) Xpozicio = 0;
             if(Xpozicio > 885) Xpozicio = 885;
 
-            Canvas.SetLeft(uto,Xpozicio - uto.Width / 2)
+            Canvas.SetLeft(uto, Xpozicio - uto.Width / 2);
 
             var utoX = Canvas.GetLeft(uto);
             var utoY = Canvas.GetRight(uto);
@@ -61,10 +61,10 @@ namespace WpfApp3 {
             if(labdaX+labdaMeret > utoX && labdaX < utoX + utoXMeret && labdaY + labdaMeret > utoY && labdaY < utoY+ utoYMeret)
             {
                 ySebesseg *= -1;
-                db++
+                db++;
                 
             }
-            debug.Content = db;
+            //debug.Content = db;
             else
             {
                 debug.Content
