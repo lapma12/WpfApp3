@@ -67,7 +67,7 @@ namespace WpfApp3 {
             //debug.Content = db;
             else
             {
-                debug.Content
+                debug.Content = "Vesztettél!";
             }
 
         }
