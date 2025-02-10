@@ -7,10 +7,27 @@
         mc:Ignorable="d"
         Title="LabdaJatek" Width="1000" Height="600">
     <Grid Width="1000" Height="600" HorizontalAlignment="Left" VerticalAlignment="Top">
-        <Canvas x:Name="jatekter" Background="#44FF0000">
-            <Ellipse x:Name="labda" Height="30" Canvas.Left="83" Stroke="Black" Canvas.Top="108" Width="30" Fill="Green"/>
+        <Canvas x:Name="jatekter" MouseDown="jatekter_MouseDown">
+            <Canvas.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="White" Offset="0.394"/>
+                    <GradientStop Color="Black" Offset="0.141"/>
+                </LinearGradientBrush>
+            </Canvas.Background>
+            <Ellipse x:Name="labda" Height="30" Canvas.Left="83" Stroke="White" Canvas.Top="108" Width="30" Fill="#FFFF0009" OpacityMask="Black"/>
             <Rectangle x:Name="uto" Height="20" Canvas.Left="83" Stroke="Black" Canvas.Top="442" Width="100" Fill="Black"/>
-            <Label Name="debug" Content="Label" Canvas.Left="38" Canvas.Top="39"/>
+            <Label Name="debug" Content="0" Canvas.Left="937" Canvas.Top="26" Height="58" Width="32" FontSize="40" Background="Black" Foreground="#FFFDFDFD"/>
+            <Label x:Name="text" Content="" Canvas.Left="351" Canvas.Top="159" Height="125" Width="342" FontSize="30" RenderTransformOrigin="0.5,0.5" FontFamily="Bodoni MT Poster Compressed">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.345"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.594"/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
         </Canvas>
 
     </Grid>

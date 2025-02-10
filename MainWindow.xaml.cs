@@ -21,6 +21,7 @@ namespace WpfApp3 {
     public partial class MainWindow : Window {
         int xSebesseg = 10;
         int ySebesseg = 10;
+        int pontok = 0;
         public MainWindow() {
             InitializeComponent();
             var gen = new Random();
@@ -38,37 +39,49 @@ namespace WpfApp3 {
         private void idoLepes(object sender, EventArgs e) {
             Canvas.SetLeft(uto, Mouse.GetPosition(jatekter).X - uto.Width / 2); //uto x-e
             if (Canvas.GetLeft(labda) < 0 || Canvas.GetLeft(labda) > 950) xSebesseg *= -1;
-            if (Canvas.GetTop(labda) < 0 || Canvas.GetTop(labda) > 550) ySebesseg *= -1;
+            if (Canvas.GetTop(labda) < 0) ySebesseg *= -1;
+            if(Canvas.GetTop(labda) > 490)
+            {   
+                text.Visibility = Visibility.Visible;
+                text.Content = "                            VESZTETTÉL\n" +
+                    "Kezd újra a játékot egérgomb lenyomásával!";
+                            
+                Canvas.SetTop(labda, 30.0); //labda y-ja
+                xSebesseg = 0;
+                ySebesseg = 0;
+            }
             Canvas.SetLeft(labda, Canvas.GetLeft(labda) + xSebesseg);
             Canvas.SetTop(labda, Canvas.GetTop(labda) + ySebesseg);
 
             Point pozicio = Mouse.GetPosition(jatekter);
             int Xpozicio = (int)pozicio.X;
             if(Xpozicio < 0) Xpozicio = 0;
-            if(Xpozicio > 885) Xpozicio = 885;
+            if(Xpozicio > 950) Xpozicio = 950;
 
             Canvas.SetLeft(uto, Xpozicio - uto.Width / 2);
 
             var utoX = Canvas.GetLeft(uto);
-            var utoY = Canvas.GetRight(uto);
+            var utoY = Canvas.GetTop(uto);
             var utoXMeret = uto.Width;
             var utoYMeret = uto.Height;
             var labdaX = Canvas.GetLeft(labda);
-            var labdaY = Canvas.GetRight(labda);
+            var labdaY = Canvas.GetTop(labda);
             var labdaMeret = labda.Width;
-            var db = 0;
 
             if(labdaX+labdaMeret > utoX && labdaX < utoX + utoXMeret && labdaY + labdaMeret > utoY && labdaY < utoY+ utoYMeret)
             {
                 ySebesseg *= -1;
-                db++;
-                
+                pontok++;
+                debug.Content = pontok;
             }
-            //debug.Content = db;
-            else
-            {
-                debug.Content = "Vesztettél!";
-            }
+        }
+
+        private void jatekter_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ySebesseg = 10;
+            xSebesseg = 10;
+            text.Visibility = Visibility.Hidden;
+            debug.Content = 0;
 
         }
     }
